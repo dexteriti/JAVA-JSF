@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Tarea Proyecto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        
+        <ui:composition template="./PlantillaGrupo6.xhtml">
+            <ui:define name="top">
+                <p:link outcome="index" value="Inicio" style="margin-bottom:20px;">
+                </p:link>
+            </ui:define>
+                
+            <ui:define name="content">
+                <h:form id="list">
+                    <p:panel header="Productos">
+                        <p:commandButton actionListener="#{productosBean.cleanProducto()}" 
+                                         oncomplete="PF('dlgSave').show();"
+                                         update=':form'
+                                         value='Agregar' 
+                                         style='margin-bottom: 10px;'> 
+                        </p:commandButton>            
+                                                
+                               
+                                <p:dataTable var="item" value="#{productosBean.findAll()}" 
+                                             id="dataTbl"
+                                             paginator="true"
+                                             rows="5">
+                                    <p:column headerText="id">
+                                        <h:outputText value="#{item.productoID}"/>
+                                    </p:column>
+                                    <p:column headerText="Nombre">
+                                        <h:outputText value="#{item.nombreProducto}"/>
+                                    </p:column >
+                                    <p:column headerText="CantidadUnidad">
+                                        <h:outputText value="#{item.cantidadPorUnidad}"/>
+                                    </p:column>
+                                    <p:column headerText="PrecioUnitario">
+                                        <h:outputText value="#{item.precioUnitario}"/>
+                                    </p:column>
+                                    <p:column headerText="UnidadesAlmacen">
+                                        <h:outputText value="#{item.unidadesEnAlmacen}"/>
+                                    </p:column>
+                                    <p:column headerText="UnidadesOrden">
+                                        <h:outputText value="#{item.unidadesPorOrden}"/>
+                                    </p:column>
+                                    <p:column headerText="Importancia">
+                                        <h:outputText value="#{item.nivelImportancia}"/>
+                                    </p:column>
+                                    <p:column headerText="Discontinuado">
+                                        <p:selectBooleanCheckbox id="discontinuado" value="#{item.discontinuado}" />
+                                    </p:column>
+                                    <p:column headerText="CategoID">
+                                        <h:outputText value="#{item.categoriaID}"/>
+                                    </p:column>
+                                    <p:column headerText="ProveedorID">
+                                       <h:outputText value="#{item.proveedorID}"/>
+                                    </p:column>
+                                    
+                                    <p:column headerText="Opciones">
+                                        <p:commandButton value="Editar" 
+                                                         oncomplete="PF('dlgSave').show();"
+                                                         actionListener="#{productosBean.setProducto(item)}"
+                                                         update=':form'
+                                                         style="margin-right: 20px;"> 
+
+                                        </p:commandButton>
+                                        
+                                    </p:column>
+                                </p:dataTable>
+                            
+                                               
+                    </p:panel>
+                </h:form> 
+
+                <!--- formulario para guardar -->
+                <h:form id="form">
+                    <p:dialog header="Producto" 
+                              widgetVar="dlgSave" modal="true" 
+                              showEffect="fade" hideEffect="fade" resizable="false">
+                        
+
+                        <p:outputPanel id="save" style="text-align:center;">
+                            <h:inputHidden value="#{productosBean.producto.productoID}" id="id"/>
+                            <p:panelGrid columns="2"
+                                         columnClasses="label,value"> 
+                                        <p:outputLabel value="NombreProducto:" for="nombreProducto" />
+                                        <p:inputText id="nombreProducto" value="#{productosBean.producto.nombreProducto}" title="NombreProducto" required="true" requiredMessage="The NombreProducto field is required."/>
+                                        <p:outputLabel value="CantidadPorUnidad:" for="cantidadPorUnidad" />
+                                        <p:inputText id="cantidadPorUnidad" value="#{productosBean.producto.cantidadPorUnidad}" title="CantidadPorUnidad" />
+                                        <p:outputLabel value="PrecioUnitario:" for="precioUnitario" />
+                                        <p:inputText id="precioUnitario" value="#{productosBean.producto.precioUnitario}" title="PrecioUnitario" />
+                                        <p:outputLabel value="UnidadesEnAlmacen:" for="unidadesEnAlmacen" />
+                                        <p:inputText id="unidadesEnAlmacen" value="#{productosBean.producto.unidadesEnAlmacen}" title="UnidadesEnAlmacen" />
+                                        <p:outputLabel value="UnidadesPorOrden:" for="unidadesPorOrden" />
+                                        <p:inputText id="unidadesPorOrden" value="#{productosBean.producto.unidadesPorOrden}" title="UnidadesPorOrden" />
+                                        <p:outputLabel value="NivelImportancia:" for="nivelImportancia" />
+                                        <p:inputText id="nivelImportancia" value="#{productosBean.producto.nivelImportancia}" title="NivelImportancia" />
+                                        <p:outputLabel value="Discontinuado:" for="discontinuado" />
+                                        <p:selectBooleanCheckbox id="discontinuado" value="#{productosBean.producto.discontinuado}" />
+                                        <p:outputLabel value="CategoriaID:" for="categoriaID" />
+                                        <p:selectOneMenu id="categoriaID" value="#{productosBean.producto.categoriaID}" >
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{null}"/>
+                                        </p:selectOneMenu>
+                                        <p:outputLabel value="ProveedorID:" for="proveedorID" />
+                                        <p:selectOneMenu id="proveedorID" value="#{productosBean.producto.proveedorID}" >
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{null}"/>
+                                        </p:selectOneMenu>
+                                    </p:panelGrid>
+                                
+                            
+
+                            <p:commandButton value="Guardar" 
+                                             actionListener="#{productosBean.saveProducto()}"
+                                             update=":list:dataTbl"
+                                             oncomplete="PF('dlgSave').hide();">
+                                                 
+                            </p:commandButton>
+                            <p:commandButton value="Cancelar" onclick="PF('dlgSave').hide();">
+                            </p:commandButton>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+                <!--- fin formulario para guardar -->           
+                
+                <!---  formulario para eliminar -->   
+                <h:form id="frmDelete">
+                    <p:dialog header="Borrar!" 
+                              widgetVar="dlgDelete" modal="true" 
+                              showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="delete" style="text-align:center;">
+                            Desea eliminar el registro #{transportistaBean.transportista.transportistaID} ?
+                            <h:inputHidden value="#{transportistaBean.transportista.transportistaID}" id="id"/>
+                            <h:inputHidden value="#{transportistaBean.transportista.nombreEmpresa}" id="nombre"/>
+                            <h:inputHidden value="#{transportistaBean.transportista.telefono}" id="telefono"/>
+                            <p:commandButton value="Si" 
+                                             actionListener="#{transportistaBean.deleteTransportista()}"
+                                             update=":list:dataTbl"
+                                             oncomplete="PF('dlgDelete').hide();"
+                                             style="margin-left: 10px; margin-right: 10px;">
+
+                            </p:commandButton>
+                            <p:commandButton value="No" onclick="PF('dlgDelete').hide();">
+                            </p:commandButton>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+                <!--- fin formulario para eliminar -->   
+
+
+
+                
+
+
+
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
