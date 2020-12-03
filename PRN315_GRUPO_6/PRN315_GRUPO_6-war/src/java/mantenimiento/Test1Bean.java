@@ -32,7 +32,7 @@ public class Test1Bean implements Serializable {
     }
     
     public List<Test1> findAll() {
-        return this.test1Facade.findAll();
+        return test1Facade.findAll();
     }
     
     public void saveTest1() {

@@ -29,7 +29,7 @@
                         </p:commandButton>            
                                                 
                                
-                                <p:dataTable var="item" value="#{productosBean.findAll()}" 
+                        <p:dataTable var="item" value="#{productosBean.findAll()}" 
                                              id="dataTbl"
                                              paginator="true"
                                              rows="5">
@@ -88,11 +88,13 @@
                         
 
                         <p:outputPanel id="save" style="text-align:center;">
-                            <h:inputHidden value="#{productosBean.producto.productoID}" id="id"/>
+                            
                             <p:panelGrid columns="2"
                                          columnClasses="label,value"> 
+                                        <p:outputLabel value="Id:" for="id" />
+                                        <p:inputText id="id" value="#{productosBean.producto.productoID}" title="Id" />
                                         <p:outputLabel value="NombreProducto:" for="nombreProducto" />
-                                        <p:inputText id="nombreProducto" value="#{productosBean.producto.nombreProducto}" title="NombreProducto" required="true" requiredMessage="The NombreProducto field is required."/>
+                                        <p:inputText id="nombreProducto" value="#{productosBean.producto.nombreProducto}" title="NombreProducto"  />
                                         <p:outputLabel value="CantidadPorUnidad:" for="cantidadPorUnidad" />
                                         <p:inputText id="cantidadPorUnidad" value="#{productosBean.producto.cantidadPorUnidad}" title="CantidadPorUnidad" />
                                         <p:outputLabel value="PrecioUnitario:" for="precioUnitario" />
