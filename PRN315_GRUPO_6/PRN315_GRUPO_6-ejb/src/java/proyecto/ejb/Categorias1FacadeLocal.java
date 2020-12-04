@@ -11,7 +11,7 @@ import proyecto.entidades.Categorias1;
 
 /**
  *
- * @author PC-BT2
+ * @author LM
  */
 @Local
 public interface Categorias1FacadeLocal {

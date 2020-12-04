@@ -52,5 +52,8 @@ public class Test1Bean implements Serializable {
         return this.test1Facade.find(id);
     }
     
-    
+        public void deleteTest1() {
+        this.test1Facade.remove(test1);
+        this.cleanTest1();
+    }
 }

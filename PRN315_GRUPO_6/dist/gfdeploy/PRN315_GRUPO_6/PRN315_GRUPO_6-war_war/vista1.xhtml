@@ -70,8 +70,16 @@
                                                  actionListener="#{test1Bean.setTest1(item)}"
                                                  update=':form'
                                                  style="margin-right: 20px;"> 
+                                     
                                     
-                                </p:commandButton>
+                                 </p:commandButton>
+                                 <p:commandButton value="Borrar" 
+                                                  oncomplete="PF('dlgDelete').show();"
+                                                  update=':frmDelete'> 
+                                     <f:setPropertyActionListener 
+                                         target="#{test1Bean.test1}" 
+                                         value="#{item}"/>
+                                 </p:commandButton>
                                 
                             </p:column>
                         </p:dataTable>
@@ -79,7 +87,7 @@
                     </h:form>
                     
                     <h:form id="form">
-                        <p:dialog header="Transportista" 
+                        <p:dialog header="Transportist" 
                               widgetVar="dlgSave" modal="true" 
                               showEffect="fade" hideEffect="fade" resizable="false">
                         <h1><h:outputText value="Create/Edit"/></h1>
@@ -103,7 +111,28 @@
                         </p:commandButton>
                         </p:dialog>
                     </h:form>
-
+                    <h:form id="frmDelete">
+                     <p:dialog header="Borrar!" 
+                              widgetVar="dlgDelete" modal="true" 
+                              showEffect="fade" hideEffect="fade" resizable="false">
+                         <p:outputPanel id="delete" style="text-align:center;">
+                             Desea eliminar el registro #{test1Bean.test1.id} ?
+                             <h:inputHidden value="#{test1Bean.test1.id}" id="id"/>
+                             <h:inputHidden value="#{test1Bean.test1.nombre}" id="nombre"/>
+                             <h:inputHidden value="#{test1Bean.test1.numero}" id="numero"/>
+                             <h:inputHidden value="#{test1Bean.test1.descripcion}" id="descripcion"/>
+                            <p:commandButton value="Si" 
+                                             actionListener="#{test1Bean.deleteTest1()}"
+                                             update=":list:dataTbl"
+                                             oncomplete="PF('dlgDelete').hide();"
+                                             style="margin-left: 10px; margin-right: 10px;">
+                                                 
+                            </p:commandButton>
+                            <p:commandButton value="No" onclick="PF('dlgDelete').hide();">
+                            </p:commandButton>
+                         </p:outputPanel>
+                     </p:dialog>
+                </h:form>
                 
 
             

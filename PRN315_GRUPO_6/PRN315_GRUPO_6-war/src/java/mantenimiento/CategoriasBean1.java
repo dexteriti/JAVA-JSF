@@ -13,6 +13,8 @@ import proyecto.entidades.Categorias1;
 
 public class CategoriasBean1 implements Serializable {
 
+    
+
     @EJB
     private Categorias1FacadeLocal categorias1Facade;
 
@@ -22,20 +24,24 @@ public class CategoriasBean1 implements Serializable {
     public CategoriasBean1() {
         this.categoria1 = new Categorias1();
     }
-    
-    public Categorias1 getCategoria() {
+
+    public Categorias1 getCategoria1() {
         return categoria1;
     }
-    
-    public void setCategoria(Categorias1 categoria1) {
+
+    public void setCategoria1(Categorias1 categoria1) {
         this.categoria1 = categoria1;
     }
+    
+    
     
     public List<Categorias1> findAll() {
         return this.categorias1Facade.findAll();
     }
-    
-    public void saveCategoria() {
+    public void cleanCategoria1() {
+        this.categoria1 = new Categorias1();
+    }
+    public void saveCategoria1() {
         if (this.categoria1.getCategoriaID() != null) {
             this.categorias1Facade.edit(this.categoria1);
         } else {
@@ -48,9 +54,8 @@ public class CategoriasBean1 implements Serializable {
         return this.categorias1Facade.find(id);
     }
     
-    public void cleanCategoria1() {
-        this.categoria1 = new Categorias1();
-    }
+    
+    
     
     public void deleteCategoria1() {
         this.categorias1Facade.remove(categoria1);

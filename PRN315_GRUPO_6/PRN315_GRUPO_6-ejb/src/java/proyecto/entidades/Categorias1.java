@@ -10,7 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author PC-BT2
+ * @author LM
  */
 @Entity
 @Table(name = "Categorias1")
@@ -29,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Categorias1.findAll", query = "SELECT c FROM Categorias1 c")
     , @NamedQuery(name = "Categorias1.findByCategoriaID", query = "SELECT c FROM Categorias1 c WHERE c.categoriaID = :categoriaID")
     , @NamedQuery(name = "Categorias1.findByNombreCategoria", query = "SELECT c FROM Categorias1 c WHERE c.nombreCategoria = :nombreCategoria")
-    , @NamedQuery(name = "Categorias1.findByDescripcion", query = "SELECT c FROM Categorias1 c WHERE c.descripcion = :descripcion")})
+    , @NamedQuery(name = "Categorias1.findByDescripcion", query = "SELECT c FROM Categorias1 c WHERE c.descripcion = :descripcion")
+    , @NamedQuery(name = "Categorias1.findByFoto", query = "SELECT c FROM Categorias1 c WHERE c.foto = :foto")})
 public class Categorias1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,9 +46,9 @@ public class Categorias1 implements Serializable {
     @Size(max = 1073741823)
     @Column(name = "Descripcion")
     private String descripcion;
-    @Lob
+    @Size(max = 1)
     @Column(name = "Foto")
-    private byte[] foto;
+    private String foto;
 
     public Categorias1() {
     }
@@ -86,11 +86,11 @@ public class Categorias1 implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

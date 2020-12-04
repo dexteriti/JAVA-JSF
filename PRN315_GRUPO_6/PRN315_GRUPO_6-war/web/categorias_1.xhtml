@@ -19,29 +19,41 @@
             <ui:define name="content">
                 <h:form id="list">
                     <p:panel header="Categorias">
-                        <p:commandButton actionListener="#{categoriasBean1.cleanCategoria1()}" 
+                        <p:commandButton value='Agregar' 
+                                         actionListener="#{categoriasBean1.cleanCategoria1()}" 
                                          oncomplete="PF('dlgSave').show();"
                                          update=':form'
-                                         value='Agregar' 
-                                         style='margin-bottom: 10px;'> 
+                                         style='margin-bottom: 10px;' >
                         </p:commandButton>
                         <p:dataTable var="item" value="#{categoriasBean1.findAll()}" 
                                      id="dataTbl"
                                      paginator="true"
                                      rows="8">
-                            <p:column headerText="id">
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
                                 <h:outputText value="#{item.categoriaID}" />
                             </p:column>
 
-                            <p:column headerText="Nombre">
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
                                 <h:outputText value="#{item.nombreCategoria}" />
                             </p:column>
 
-                            <p:column headerText="Descripcion">
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Descripcion"/>
+                                </f:facet>
                                 <h:outputText value="#{item.descripcion}" />
                             </p:column>
                             
-                            <p:column headerText="Foto">
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Foto"/>
+                                </f:facet>
                                 <h:outputText value="#{item.foto}" />
                             </p:column>
                                                         
@@ -57,7 +69,7 @@
                                                  oncomplete="PF('dlgDelete').show();"
                                                  update=':frmDelete'> 
                                     <f:setPropertyActionListener 
-                                        target="#{categoriasBean1.categoria}" 
+                                        target="#{categoriasBean1.categoria1}" 
                                         value="#{item}"/>
                                 </p:commandButton>
                             </p:column>
@@ -72,19 +84,19 @@
 
                             
                             
-                                <p:panelGrid  columns="2"
+                        <p:panelGrid  columns="2">
                                         
-                                <p:outputLabel value="ID:" for="id" />
-                                <p:inputText id="id" value="#{categoriasBean1.categoria.categoriaID}" title="Id" required="false" requiredMessage="The Id field is required."/>
+                                <p:outputLabel value="Id:" for="id" />
+                                <p:inputText id="id" value="#{categoriasBean1.categoria1.categoriaID}" title="Id" required="false" requiredMessage="The Id field is required."/>
                                 <p:outputLabel value="Nombre:" for="nombre" />
-                                <p:inputText id="nombre" value="#{categoriasBean1.categoria.nombreCategoria}" title="Nombre" required="true" requiredMessage="The Nombre field is required." />
-                                <p:outputLabel id="descripcion" value="Descripcion:" />
-                                <p:inputText value="#{categoriasBean1.categoria.descripcion}" required="true"/>
-                                <h:outputText value="Foto:" />
-                                <p:inputText value="#{categoriasBean1.categoria.foto}" required="false"/>
+                                <p:inputText id="nombre" value="#{categoriasBean1.categoria1.nombreCategoria}" title="Nombre" required="true" requiredMessage="The Nombre field is required." />
+                                <p:outputLabel for="descripcion" value="Descripcion:" />
+                                <p:inputText id="descripcion" value="#{categoriasBean1.categoria1.descripcion}" title="Descripcion" required="true" requiredMessage="The Nombre field is required."/>
+                                <p:outputLabel for="foto" value="Foto:" />
+                                <p:inputText id="foto" value="#{categoriasBean1.categoria1.foto}" required="true"  title="Foto"/>
                             </p:panelGrid>
                             <p:commandButton value="Guardar" 
-                                             actionListener="#{categoriasBean1.saveCategoria()}"
+                                             actionListener="#{categoriasBean1.saveCategoria1()}"
                                              update=":list:dataTbl"
                                              oncomplete="PF('dlgSave').hide();">
                                                  
@@ -102,11 +114,11 @@
                               widgetVar="dlgDelete" modal="true" 
                               showEffect="fade" hideEffect="fade" resizable="false">
                          <p:outputPanel id="delete" style="text-align:center;">
-                             Desea eliminar el registro #{categoriasBean1.categoria.categoriaID} ?
-                             <h:inputHidden value="#{categoriasBean1.categoria.categoriaID}" id="id"/>
-                             <h:inputHidden value="#{categoriasBean1.categoria.nombreCategoria}" id="nombre"/>
-                             <h:inputHidden value="#{categoriasBean1.categoria.descripcion}" id="descripcion"/>
-                             <h:inputHidden value="#{categoriasBean1.categoria.foto}" id="foto"/>
+                             Desea eliminar el registro #{categoriasBean1.categoria1.categoriaID} ?
+                             <h:inputHidden value="#{categoriasBean1.categoria1.categoriaID}" id="id"/>
+                             <h:inputHidden value="#{categoriasBean1.categoria1.nombreCategoria}" id="nombre"/>
+                             <h:inputHidden value="#{categoriasBean1.categoria1.descripcion}" id="descripcion"/>
+                             <h:inputHidden value="#{categoriasBean1.categoria1.foto}" id="foto"/>
                             <p:commandButton value="Si" 
                                              actionListener="#{categoriasBean1.deleteCategoria1()}"
                                              update=":list:dataTbl"

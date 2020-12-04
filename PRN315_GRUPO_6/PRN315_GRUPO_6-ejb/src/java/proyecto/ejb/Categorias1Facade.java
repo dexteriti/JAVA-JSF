@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package proyecto.ejb;
 
 import javax.ejb.Stateless;
@@ -8,7 +12,7 @@ import proyecto.entidades.Categorias1;
 
 /**
  *
- * @author PC-BT2
+ * @author LM
  */
 @Stateless
 public class Categorias1Facade extends AbstractFacade<Categorias1> implements Categorias1FacadeLocal {
