@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./PlantillaGrupo6.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="right">
+                right
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+
+                    <h3>Horizontal and Fixed Width</h3>
+                    <div class="p-field p-grid">
+                        <p:outputLabel for="firstname3" styleClass="p-col-fixed" style="width:100px" value="Firstname" />
+                        <div class="p-col">
+                            <p:inputText id="firstname3" />
+                        </div>
+                    </div>
+                    <div class="p-field p-grid">
+                        <p:outputLabel for="lastname3" styleClass="p-col-fixed" style="width:100px" value="Lastname" />
+                        <div class="p-col">
+                            <p:inputText id="lastname3" />
+                        </div>
+                    </div>
+
+
+
+                    <p:button value="Submit" />
+
+
+
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

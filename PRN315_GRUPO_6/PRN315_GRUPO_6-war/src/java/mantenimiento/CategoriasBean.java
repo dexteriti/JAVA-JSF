@@ -17,6 +17,7 @@ public class CategoriasBean implements Serializable {
     private CategoriasFacadeLocal categoriasFacade;
     
     private Categorias categoria;
+    private List<Categorias> categotiaList; 
     
     
     public CategoriasBean() {
@@ -34,6 +35,8 @@ public class CategoriasBean implements Serializable {
     public List<Categorias> findAll() {
         return this.categoriasFacade.findAll();
     }
+    
+    
     
     public void saveCategoria() {
         if (this.categoria.getCategoriaID() != null) {
