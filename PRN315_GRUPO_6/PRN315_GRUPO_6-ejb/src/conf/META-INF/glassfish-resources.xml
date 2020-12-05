@@ -11,4 +11,6 @@
         <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:module/Proyecto" object-type="user" pool-name="microsoft_sql_BaseProyecto_saPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:module/proyec" object-type="user" pool-name="microsoft_sql_BaseProyecto_saPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:module/proyecto" object-type="user" pool-name="microsoft_sql_BaseProyecto_saPool"/>
 </resources>

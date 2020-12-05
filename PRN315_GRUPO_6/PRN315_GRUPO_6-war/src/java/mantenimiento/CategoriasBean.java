@@ -17,7 +17,7 @@ public class CategoriasBean implements Serializable {
     private CategoriasFacadeLocal categoriasFacade;
     
     private Categorias categoria;
-    private List<Categorias> categotiaList; 
+     
     
     
     public CategoriasBean() {
@@ -31,10 +31,13 @@ public class CategoriasBean implements Serializable {
     public void setCategoria(Categorias categoria) {
         this.categoria = categoria;
     }
+
+   
     
-    public List<Categorias> findAll() {
-        return this.categoriasFacade.findAll();
-    }
+    
+    public List<Categorias> getIdCategorias(){
+        return categoriasFacade.findAll();
+}
     
     
     
