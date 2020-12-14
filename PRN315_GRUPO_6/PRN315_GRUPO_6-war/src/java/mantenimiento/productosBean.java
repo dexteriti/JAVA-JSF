@@ -60,6 +60,11 @@ public class productosBean implements Serializable {
         this.cleanProducto();
     }
     
+    public void deteteProducto(){
+        this.productosFacade.remove(producto);
+        this.cleanProducto();
+    }
+    
     
     
 }

@@ -5,13 +5,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <h:head>
+      <h:head>
         <title>Tarea Proyecto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <body>
-        
+    <h:body>
         <ui:composition template="./PlantillaGrupo6.xhtml">
             <ui:define name="top">
                 <p:link outcome="index" value="Inicio" style="margin-bottom:20px;">
@@ -27,8 +25,7 @@
                                          value='Agregar' 
                                          style='margin-bottom: 10px;'> 
                         </p:commandButton>            
-                                                
-                               
+                                    
                         <p:dataTable var="item" value="#{productosBean.findAll()}" 
                                              id="dataTbl"
                                              paginator="true"
@@ -71,6 +68,13 @@
                                                          update=':form'
                                                          style="margin-right: 20px;"> 
 
+                                        </p:commandButton>
+                                        <p:commandButton value="Borrar" 
+                                                         oncomplete="PF('dlgDelete').show();"
+                                                         update=':frmDelete'> 
+                                            <f:setPropertyActionListener 
+                                                target="#{productosBean.producto}" 
+                                                value="#{item}"/>
                                         </p:commandButton>
                                         
                                     </p:column>
@@ -167,25 +171,48 @@
                     
                 <!---  formulario para eliminar -->   
                 <h:form id="frmDelete">
-                    <p:dialog header="Borrar!" 
+                        <p:dialog header="Borrar!" 
                               widgetVar="dlgDelete" modal="true" 
                               showEffect="fade" hideEffect="fade" resizable="false">
-                        <p:outputPanel id="delete" style="text-align:center;">
-                            Desea eliminar el registro #{transportistaBean.transportista.transportistaID} ?
-                            <h:inputHidden value="#{transportistaBean.transportista.transportistaID}" id="id"/>
-                            <h:inputHidden value="#{transportistaBean.transportista.nombreEmpresa}" id="nombre"/>
-                            <h:inputHidden value="#{transportistaBean.transportista.telefono}" id="telefono"/>
-                            <p:commandButton value="Si" 
-                                             actionListener="#{transportistaBean.deleteTransportista()}"
+                            <p:outputPanel id="delete" style="text-align:center;">
+                                Desea eliminar el registro #{productosBean.producto.productoID} ?
+
+
+
+                                <h:inputHidden id="productoID" value="#{productosBean.producto.productoID}" />
+
+                                <h:inputHidden id="nombreProducto" value="#{productosBean.producto.nombreProducto}" />
+
+                                <h:inputHidden id="cantidadPorUnidad" value="#{productosBean.producto.cantidadPorUnidad}"  />
+
+                                <h:inputHidden id="precioUnitario" value="#{productosBean.producto.precioUnitario}"  />
+
+                                <h:inputHidden id="unidadesEnAlmacen" value="#{productosBean.producto.unidadesEnAlmacen}"  />
+
+                                <h:inputHidden id="unidadesPorOrden" value="#{productosBean.producto.unidadesPorOrden}"  />
+
+                                <h:inputHidden id="nivelImportancia" value="#{productosBean.producto.nivelImportancia}"  />
+
+                                <h:inputHidden id="discontinuado" value="#{productosBean.producto.discontinuado}" />
+                                
+                                <h:inputHidden id="categoriaID" value="#{productosBean.producto.categoriaID}"  />
+                                
+                                <h:inputHidden id="proveedorID" value="#{productosBean.producto.proveedorID}"  />
+                                                           
+
+                               
+                            
+                                <p:commandButton value="Si" 
+                                                 actionListener="#{productosBean.deteteProducto()}"
                                              update=":list:dataTbl"
                                              oncomplete="PF('dlgDelete').hide();"
                                              style="margin-left: 10px; margin-right: 10px;">
-
+                                                 
                             </p:commandButton>
                             <p:commandButton value="No" onclick="PF('dlgDelete').hide();">
                             </p:commandButton>
-                        </p:outputPanel>
-                    </p:dialog>
+                         </p:outputPanel>
+                      </p:dialog>
                 </h:form>
                 <!--- fin formulario para eliminar -->   
 
@@ -204,5 +231,5 @@
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>
